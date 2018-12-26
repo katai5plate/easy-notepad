@@ -4,7 +4,7 @@
       const APPNAME = "katai5plate/easy-notepad";
       const intervalTime = 100;
       let diff = "";
-      const savedTime = () => (new Date()).toString().match(/\d{2}:\d{2}:\d{2}/)[0];
+      const savedTime = () => `SAVED: ${(new Date()).toString().match(/\d{2}:\d{2}:\d{2}/)[0]}`;
       const editorOnChange = () => {
         const now = document.body.innerHTML;
         if(diff !== now){
