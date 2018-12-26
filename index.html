@@ -9,7 +9,7 @@
       const savedTime = () => updatedDate.toString().match(/\d{2}:\d{2}:\d{2}/)[0];
       const titleLabel = () => `${saved ? "💾" : ""}${TITLE ? TITLE : savedTime()}`;
       const saveStorage = (name, value) => localStorage[`${APPNAME}-${name}`] = value;
-      const loadStorage = (name) => localStorage[`${APPNAME}-${name}`];
+      const loadStorage = (name) => localStorage[`${APPNAME}-${name}`] || "";
       
       const UpdateTitle = nextSaved => {
         if(nextSaved) updatedDate = new Date();
@@ -32,11 +32,9 @@
       };
       const bodyOnLoad = () => {
         console.log("init!");
-        if(!!localStorage[APPNAME]){
-          document.body.innerHTML = loadStorage("note");
-          TITLE = loadStorage("title") || null;
-          console.log("loaded!");
-        }
+        document.body.innerHTML = loadStorage("note");
+        TITLE = loadStorage("title") || null;
+        console.log("loaded!");
       };
       const __editTitle = name => {
         TITLE = name;
