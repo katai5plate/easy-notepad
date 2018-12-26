@@ -23,6 +23,9 @@ https://katai5plate.github.io/easy-notepad/
   - Windows: F12
   - Mac: ⌘ + ⌥ + I
 ### タイトルの変更
-```
-TITLE = "任意のキーワード";
+```js
+// 一時的
+TITLE = "任意のキーワード" or null;
+// 永続的
+__editTitle("任意のキーワード" or null)
 ```
