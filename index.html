@@ -2,12 +2,14 @@
   <head>
     <script>
       const APPNAME = "katai5plate/easy-notepad";
-      let TITLE;
+      let TITLE = null;
       const intervalTime = 1000;
       let diff = "", saved = false;
       let updatedDate = new Date();
       const savedTime = () => updatedDate.toString().match(/\d{2}:\d{2}:\d{2}/)[0];
       const titleLabel = () => `${saved ? "💾" : ""}${TITLE ? TITLE : savedTime()}`;
+      const saveStorage = (name, value) => localStorage[`${APPNAME}-${name}`] = value;
+      const loadStorage = (name) => localStorage[`${APPNAME}-${name}`];
       
       const UpdateTitle = nextSaved => {
         if(nextSaved) updatedDate = new Date();
@@ -18,8 +20,7 @@
         const now = document.body.innerHTML;
         if(diff !== now){
           console.log("changed!");
-          if(!localStorage[APPNAME]) localStorage[APPNAME] = {};
-          localStorage[APPNAME].note = document.body.innerHTML;
+          saveStorage("note", document.body.innerHTML);
           UpdateTitle(true);
           diff = now;
         }else{
@@ -32,9 +33,14 @@
       const bodyOnLoad = () => {
         console.log("init!");
         if(!!localStorage[APPNAME]){
-          document.body.innerHTML = localStorage[APPNAME].note;
+          document.body.innerHTML = loadStorage("note");
+          TITLE = loadStorage("title") || null;
           console.log("loaded!");
         }
+      };
+      const __editTitle = name => {
+        TITLE = name;
+        saveStorage("title", TITLE);
       };
       setInterval(editorOnChange, intervalTime);
     </script>
