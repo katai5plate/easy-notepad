@@ -5,18 +5,27 @@
       let TITLE;
       const intervalTime = 1000;
       let diff = "", saved = false;
-      const savedTime = () => (new Date()).toString().match(/\d{2}:\d{2}:\d{2}/)[0];
+      let updatedDate = new Date();
+      const savedTime = () => updatedDate.toString().match(/\d{2}:\d{2}:\d{2}/)[0];
       const titleLabel = () => `${saved ? "💾" : ""}${TITLE ? TITLE : savedTime()}`;
+      
+      const UpdateTitle = nextSaved => {
+        if(nextSaved) updatedDate = new Date();
+        saved = nextSaved;
+        document.title = titleLabel();
+      };
       const editorOnChange = () => {
         const now = document.body.innerHTML;
         if(diff !== now){
           console.log("changed!");
           localStorage[APPNAME] = document.body.innerHTML;
-          document.title = titleLabel();
+          UpdateTitle(true);
           diff = now;
-          saved = true;
         }else{
-          if(saved) saved = false;
+          if(saved){
+            UpdateTitle(false);
+            document.title = titleLabel();
+          }
         }
       };
       const bodyOnLoad = () => {
