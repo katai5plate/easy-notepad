@@ -16,3 +16,13 @@ https://katai5plate.github.io/easy-notepad/
 - Ctrl(⌘) + I: 斜体
 - Ctrl(⌘) + C: コピー
 - Ctrl(⌘) + V: 貼り付け
+
+## コンソールコマンド
+### コンソールの出し方
+- Chromeの場合
+  - Windows: F12
+  - Mac: ⌘ + ⌥ + I
+### タイトルの変更
+```
+TITLE = "任意のキーワード";
+```
