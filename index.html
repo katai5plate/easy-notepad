@@ -1,8 +1,23 @@
 <html>
   <head>
     <script>
-      const test = () => console.log("yey!");
+      const APPNAME = "katai5plate/easy-notepad";
+      let diff = "";
+      const editorOnChange = () => {
+        const now = document.body.innerHTML;
+        if(diff !== now){
+          console.log("changed!");
+          diff = now;
+        }
+      };
+      const bodyOnLoad = () => {
+        console.log("init!");
+        if(!!localStorage[APPNAME]){
+          document.body.innerHTML = localStorage[APPNAME];
+          console.log("loaded!");
+        }
+      };
     </script>
   </head>
-  <body contenteditable onchange="test()"></body>
+  <body contenteditable onload="bodyOnLoad()"></body>
 </html>
