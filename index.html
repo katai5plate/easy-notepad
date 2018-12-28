@@ -9,7 +9,7 @@
       const savedTime = () => updatedDate.toString().match(/\d{2}:\d{2}:\d{2}/)[0];
       const titleLabel = () => `${saved ? "💾" : ""}${TITLE ? TITLE : savedTime()}`;
       const saveStorage = (name, value) => localStorage[`${APPNAME}/${name}`] = value;
-      const loadStorage = (name) => localStorage[`${APPNAME}/${name}`] || "";
+      const loadStorage = (name) => localStorage[`${APPNAME}/${name}`] || `GITHUB: <a href="https://github.com/${APPNAME}">${APPNAME}</a>`;
       
       const UpdateTitle = nextSaved => {
         if(nextSaved) updatedDate = new Date();
