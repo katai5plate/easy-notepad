@@ -10,7 +10,7 @@
       const titleLabel = () => `${saved ? "💾" : ""}${TITLE ? TITLE : savedTime()}`;
       const saveStorage = (name, value) => localStorage[`${APPNAME}/${name}`] = value;
       const loadStorage = (name) => localStorage[`${APPNAME}/${name}`] || 
-            `GITHUB: <a href="https://github.com/${APPNAME}">${APPNAME}</a><br/><br/>（この画面全体に文章を書き込めます/オートセーブです）`;
+            `GITHUB: <a href="https://github.com/${APPNAME}">https://github.com/${APPNAME}</a><br/><br/>（この画面全体に文章を書き込めます/オートセーブです）`;
       
       const UpdateTitle = nextSaved => {
         if(nextSaved) updatedDate = new Date();
