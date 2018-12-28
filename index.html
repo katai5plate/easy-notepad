@@ -9,8 +9,7 @@
       const savedTime = () => updatedDate.toString().match(/\d{2}:\d{2}:\d{2}/)[0];
       const titleLabel = () => `${saved ? "💾" : ""}${TITLE ? TITLE : savedTime()}`;
       const saveStorage = (name, value) => localStorage[`${APPNAME}/${name}`] = value;
-      const loadStorage = (name) => localStorage[`${APPNAME}/${name}`] || 
-            `GITHUB: <a href="https://github.com/${APPNAME}">https://github.com/${APPNAME}</a><br/><br/>（この画面全体に文章を書き込めます/オートセーブです）`;
+      const loadStorage = (name) => localStorage[`${APPNAME}/${name}`] || "";
       
       const UpdateTitle = nextSaved => {
         if(nextSaved) updatedDate = new Date();
@@ -33,7 +32,7 @@
       };
       const bodyOnLoad = () => {
         console.log("init!");
-        document.body.innerHTML = loadStorage("note");
+        document.body.innerHTML = loadStorage("note") || `GITHUB: <a href="https://github.com/${APPNAME}">https://github.com/${APPNAME}</a><br/><br/>（この画面全体に文章を書き込めます/オートセーブです）`;
         TITLE = loadStorage("title") || null;
         console.log("loaded!");
       };
